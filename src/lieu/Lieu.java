@@ -1,6 +1,6 @@
 package lieu;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Un lieu abstrait représenté par un nom et une liste de voisins à pied.
@@ -15,11 +15,11 @@ public abstract class Lieu
 	protected String nom;
 	
 	/**
-	 * La liste des voisins à pied.
+	 * La liste des voisins à pied associée avec la durée pour les atteindre.
 	 * On peut ajouter un nouveau voisin à pied.
 	 * @see Lieu#ajouterVoisinAPied(Lieu voisin)
 	 */
-	private ArrayList<Lieu> voisinsAPied;
+	private HashMap<Lieu, Integer> voisinsAPied;
 	
 	/**
 	 * Construit un lieu avec un nom.
@@ -27,17 +27,18 @@ public abstract class Lieu
 	 */
 	public Lieu(String nom)
 	{
-		voisinsAPied = new ArrayList<Lieu>();
+		voisinsAPied = new HashMap<Lieu, Integer>();
 		this.nom = nom;
 	}
 	
 	/**
 	 * Ajoute au lieu un nouveau voisin à pied.
 	 * @param voisin le nouveau lieu voisin.
+	 * @param temps le temps pour atteindre le lieu.
 	 */
-	public void ajouterVoisinAPied(Lieu voisin)
+	public void ajouterVoisinAPied(Lieu voisin, int temps)
 	{
-		voisinsAPied.add(voisin);
+		voisinsAPied.put(voisin, temps);
 	}
 	
 	/**
@@ -47,6 +48,6 @@ public abstract class Lieu
 	 */
 	public boolean estAccessibleAPied(Lieu lieu)
 	{
-		return voisinsAPied.contains(lieu);
+		return voisinsAPied.containsKey(lieu);
 	}
 }
