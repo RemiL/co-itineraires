@@ -42,6 +42,20 @@ public abstract class Lieu
 	}
 	
 	/**
+	 * Rend les deux lieux passés en paramètre voisins l'un de l'autre à pieds.
+	 * L'ordre des voisins n'a pas d'importance, la liaison de voisinage créée
+	 * est symétrique.
+	 * @param lieu1 le premier lieu du couple de voisin.
+	 * @param lieu2 le deuxième lieu du couple de voisin.
+	 * @param temps le temps séparant les deux liens.
+	 */
+	static public void rendreVoisinsAPied(Lieu lieu1, Lieu lieu2, int temps)
+	{
+		lieu1.ajouterVoisinAPied(lieu2, temps);
+		lieu2.ajouterVoisinAPied(lieu1, temps);
+	}
+	
+	/**
 	 * Teste si un lieu est accessible à pied depuis le lieu courant.
 	 * @param lieu le lieu à tester.
 	 * @return true si le lieu est accessible à pied depuis le lieu courant, false sinon.
