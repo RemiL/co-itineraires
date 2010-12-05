@@ -2,6 +2,8 @@ package simulateurdeplacement;
 
 import java.util.ArrayList;
 
+import trajet.Trajet;
+
 import lieu.ArretBus;
 import lieu.Batiment;
 import lieu.Lieu;
@@ -13,9 +15,19 @@ public class SimulateurDeplacement
 	static private ArrayList<ArretBus> arretsBus = new ArrayList<ArretBus>();
 	static private ArrayList<LigneBus> lignesBus = new ArrayList<LigneBus>();
 	
+	static private Trajet trajet;
+	
 	public static void main(String[] args)
 	{
+		boolean continuer = true;
+		
 		initialiserLieux();
+		
+		do
+		{
+			trajet = creerTrajet();
+			continuer = false;
+		} while(continuer);
 	}
 	
 	/**
@@ -181,5 +193,40 @@ public class SimulateurDeplacement
 		lignesBus.get(1).ajouterArret(arretsBus.get(17), 4);
 		lignesBus.get(1).ajouterArret(arretsBus.get(3), 1);
 		lignesBus.get(1).ajouterArret(arretsBus.get(1), 1);
+	}
+	
+	/**
+	 * Affiche les lieux existant
+	 */
+	private static void afficherLieux()
+	{
+		for(int i=0; i<lieux.size(); i++)
+			System.out.println(i+1 + ". " + lieux.get(i));
+	}
+	
+	/**
+	 * Crée un trajet
+	 * @return le trajet créé
+	 */
+	private static Trajet creerTrajet()
+	{
+		boolean continuer = true;
+		Trajet trajet = new Trajet();
+		
+		afficherLieux();
+		System.out.println("");
+		do
+		{
+			// Un truc pour créer le trajet
+			do
+			{
+				System.out.println("Voulez-vous ajouter une étape ?");
+				System.out.println("o : oui");
+				System.out.println("n : non");
+			} while(false);
+			continuer = false;
+		} while(continuer);
+		
+		return trajet;
 	}
 }
