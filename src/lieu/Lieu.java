@@ -64,4 +64,9 @@ public abstract class Lieu
 	{
 		return voisinsAPied.containsKey(lieu);
 	}
+	
+	public String toString()
+	{
+		return nom;
+	}
 }
