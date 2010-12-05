@@ -28,12 +28,13 @@ public class ArretBus extends LieuAccessibleEnTransport
 	}
 	
 	/**
-	 * 
+	 * Ajoute une ligne à l'arrêt.
 	 * @param ligne la nouvelle ligne de bus à laquelle appartient l'arrêt de bus.
 	 */
 	public void ajouterLigne(LigneBus ligne)
 	{
-		lignes.add(ligne);
+		if(ligne.contientArret(this))
+			lignes.add(ligne);
 	}
 
 	/**

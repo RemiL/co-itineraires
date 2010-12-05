@@ -59,7 +59,7 @@ public class LigneBus extends Ligne
 	public void ajouterArret(ArretBus arret, int temps)
 	{
 		arrets.add(arret);
-		
+		arret.ajouterLigne(this);
 		tempsTrajet.put(arret, temps);
 	}
 
@@ -72,6 +72,16 @@ public class LigneBus extends Ligne
 	public boolean contientArrets(Lieu depart, Lieu arrivee)
 	{
 		return (arrets.contains(depart) && arrets.contains(arrivee));
+	}
+	
+	/**
+	 * Vérifie qu'un lieux appartient à la ligne.
+	 * @param le lieu.
+	 * @return true si le lieu appartient à la ligne, false sinon.
+	 */
+	public boolean contientArret(Lieu l)
+	{
+		return arrets.contains(l);
 	}
 	
 	/**
