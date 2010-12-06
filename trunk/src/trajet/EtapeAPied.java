@@ -12,4 +12,14 @@ public class EtapeAPied implements Etape
 		this.lieuDepart = lieuDepart;
 		this.lieuArrivee = lieuArrivee;
 	}
+	
+	public Lieu getLieuDepart()
+	{
+		return lieuDepart;
+	}
+	
+	public Lieu getLieuArrivee()
+	{
+		return lieuArrivee;
+	}
 }

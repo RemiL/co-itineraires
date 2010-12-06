@@ -1,7 +1,11 @@
 package simulateurdeplacement;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
+import trajet.Etape;
+import trajet.EtapeAPied;
 import trajet.Trajet;
 
 import lieu.ArretBus;
@@ -210,23 +214,104 @@ public class SimulateurDeplacement
 	 */
 	private static Trajet creerTrajet()
 	{
-		boolean continuer = true;
 		Trajet trajet = new Trajet();
 		
 		afficherLieux();
-		System.out.println("");
-		do
+		System.out.println();
+		
+		Etape etape = creerEtape();
+		trajet.ajouterEtape(etape);
+		
+		while(choixNouvelleEtape())
 		{
-			// Un truc pour créer le trajet
-			do
-			{
-				System.out.println("Voulez-vous ajouter une étape ?");
-				System.out.println("o : oui");
-				System.out.println("n : non");
-			} while(false);
-			continuer = false;
-		} while(continuer);
+			etape = creerEtape(etape.getLieuArrivee());
+			trajet.ajouterEtape(etape);
+		}
 		
 		return trajet;
+	}
+	
+	/**
+	 * Crée une étape à partir de deux lieux choisis par 
+	 * l'utilisateur.
+	 * @return l'étape construite.
+	 */
+	private static Etape creerEtape()
+	{
+		Lieu depart = lireChoixTrajet("Indiquez votre lieu de départ : ");
+		Lieu arrivee = lireChoixTrajet("Indiquez votre prochaine étape : ");
+		
+		return new EtapeAPied(depart, arrivee);
+	}
+	
+	/**
+	 * Crée une étape à partir du lieu de départ fourni et 
+	 * d'un lieu d'arrivée choisi par l'utilisateur.
+	 * @param depart le lieu de départ de l'étape à construire.
+	 * @return l'étape construite.
+	 */
+	private static Etape creerEtape(Lieu depart)
+	{
+		Lieu arrivee = lireChoixTrajet("Indiquez votre prochaine étape : ");
+	
+		return new EtapeAPied(depart, arrivee);
+	}
+	
+	/**
+	 * Demande à l'utilisateur s'il souhaite ajouter une nouvelle étape à son trajet.
+	 * @return vrai ou faux selon que le choix de l'utilisateur.
+	 */
+	private static boolean choixNouvelleEtape()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Voulez vous ajouter une nouvelle étape (utilisez o / n) ? ");
+		String rep;
+		boolean saisieValide;
+		
+	    do
+	    {
+	    	rep = sc.next();
+	    	saisieValide = (rep.equals("o") || rep.equals("n")) ;
+	    	if (!saisieValide)
+	    		System.out.print("Saisie non valide, veuillez réessayer : ");
+	    } while (!saisieValide);
+	    
+	    return rep.equals("o");
+	}
+	
+	/**
+	 * Lit l'identifiant d'un lieu entré au clavier et retourne le lieu correspondant.
+	 * @param msg le message à afficher avant de lire l'entrée standard.
+	 * @return le lieu choisi.
+	 */
+	private static Lieu lireChoixTrajet(String msg)
+	{
+		Scanner sc = new Scanner(System.in);
+	    Lieu lieu = null;
+	    boolean saisieValide;
+	    
+	    System.out.print(msg);
+	    
+	    do
+	    {
+	    	try
+		    {
+		    	lieu = lieux.get(sc.nextInt()-1);
+		    	saisieValide = true;
+		    }
+	    	catch (InputMismatchException e)
+		    {
+		    	saisieValide = false;
+		    	sc = new Scanner(System.in);
+		    	System.out.print("Saisie non valide, veuillez réessayer : ");
+		    }
+		    catch (IndexOutOfBoundsException e)
+		    {
+		    	saisieValide = false;
+		    	System.out.print("Saisie hors borne, veuillez réessayer : ");
+		    }
+	    } while (!saisieValide);
+	    
+	    return lieu;
 	}
 }

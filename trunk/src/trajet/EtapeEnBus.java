@@ -1,6 +1,7 @@
 package trajet;
 
 import lieu.ArretBus;
+import lieu.Lieu;
 import ligne.LigneBus;
 
 public class EtapeEnBus implements Etape
@@ -14,5 +15,15 @@ public class EtapeEnBus implements Etape
 		this.lieuDepart = lieuDepart;
 		this.lieuArrivee = lieuArrivee;
 		this.ligne = ligne;
+	}
+
+	public Lieu getLieuDepart()
+	{
+		return lieuDepart;
+	}
+	
+	public Lieu getLieuArrivee()
+	{
+		return lieuArrivee;
 	}
 }
