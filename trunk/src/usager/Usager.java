@@ -1,37 +1,33 @@
 package usager;
 
-import lieu.Lieu;
+import java.util.ArrayList;
+
+import contraintes.Contrainte;
+
+import graphe.Lieu;
 import trajet.Trajet;
 
 public class Usager
 {
 	private String nom;
 	private Trajet trajet;
+	private Lieu depart, arrivee;
+	private ArrayList<Trajet> trajetsCandidats;
+	private int tempsAttente;
 	private Lieu positionActuelle;
 	
-	public Usager(String nom)
+	public Usager(String nom, Lieu depart, Lieu arrivee, ArrayList<Trajet> trajetsCandidats, Contrainte contrainte, int tempsAttente)
 	{
 		this.nom = nom;
+		this.positionActuelle = this.depart = depart;
+		this.arrivee = arrivee;
+		this.trajetsCandidats = trajetsCandidats;
+		this.tempsAttente = tempsAttente;
 	}
 
 	public String getNom()
 	{
 		return nom;
-	}
-
-	public void setNom(String nom)
-	{
-		this.nom = nom;
-	}
-
-	public Trajet getTrajet()
-	{
-		return trajet;
-	}
-
-	public void setTrajet(Trajet trajet)
-	{
-		this.trajet = trajet;
 	}
 
 	public Lieu getPositionActuelle()

@@ -1,18 +1,21 @@
 package ligne;
 
-import lieu.Lieu;
-import lieu.LieuAccessibleEnTransport;
-
 /**
  * Une ligne abstraite représentée par un nom.
  * @author Nicolas
  */
 public abstract class Ligne
 {
-	protected String nom;
+	private String nom;
+	/*
+	private Lieu departAller;
+	private Lieu departRetour;
+	private ArrayList<Horaire> horairesAller;
+	private ArrayList<Horaire> horairesRetour;
+	*/
 	
 	/**
-	 * Construit une ligne avacun nom.
+	 * Construit une ligne avec un nom.
 	 * @param nom le nom de la ligne.
 	 */
 	public Ligne(String nom)
@@ -20,6 +23,8 @@ public abstract class Ligne
 		this.nom = nom;
 	}
 	
-	public abstract double calculCoutTrajet(LieuAccessibleEnTransport depart, LieuAccessibleEnTransport arrivee);
-	public abstract boolean contientArrets(Lieu depart, Lieu arrivee);
+	public String getNom()
+	{
+		return nom;
+	}
 }
