@@ -1,5 +1,7 @@
 package trajet;
 
+import graphe.Etape;
+
 import java.util.ArrayList;
 
 public class Trajet
