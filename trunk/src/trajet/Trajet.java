@@ -21,7 +21,7 @@ public class Trajet
 	
 	public Lieu getLieuDepart()
 	{
-		return etapes.getFirst().getLieuArrivee();
+		return etapes.getFirst().getLieuDepart();
 	}
 	
 	public Lieu getLieuArrivee()
