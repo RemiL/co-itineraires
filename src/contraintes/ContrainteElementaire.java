@@ -6,4 +6,9 @@ public abstract class ContrainteElementaire implements Contrainte
 	{
 		
 	}
+	
+	public String toString()
+	{
+		return "Contrainte";
+	}
 }

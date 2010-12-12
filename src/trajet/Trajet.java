@@ -5,6 +5,8 @@ import graphe.Lieu;
 
 import java.util.LinkedList;
 
+import moyenstransport.MoyenTransport;
+
 public class Trajet
 {
 	private LinkedList<Etape> etapes;
@@ -53,6 +55,29 @@ public class Trajet
 			duree += e.getDuree();
 		
 		return duree;
+	}
+	
+	public boolean passePar(Lieu lieu)
+	{
+		for (Etape e : etapes)
+		{
+			if (e.passePar(lieu))
+				return true;
+		}
+		
+		return false;
+	}
+	
+
+	public boolean utilise(MoyenTransport moyenTransport)
+	{
+		for (Etape e : etapes)
+		{
+			if (e.getMoyenTransport() == moyenTransport)
+				return true;
+		}
+		
+		return false;
 	}
 	
 	public String toString()

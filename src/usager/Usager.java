@@ -36,9 +36,10 @@ public class Usager
 	{
 		return positionActuelle;
 	}
-	public Trajet choisirMeilleurTrajet(ArrayList<Trajet> trajets)
+	
+	public Trajet choisirMeilleurTrajet()
 	{
-		ArrayList<Trajet> trajetsValables = contrainte.evaluerTrajets(trajets);
+		ArrayList<Trajet> trajetsValables = contrainte.evaluerTrajets(trajetsCandidats);
 		
 		for (Trajet trajet : trajetsValables)
 		{

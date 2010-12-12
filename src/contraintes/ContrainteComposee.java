@@ -20,15 +20,15 @@ public class ContrainteComposee implements Contrainte
 
 	public ArrayList<Trajet> evaluerTrajets(ArrayList<Trajet> trajetsCandidats)
 	{
-		ArrayList<Trajet> trajets = new ArrayList<Trajet>(trajetsCandidats);
+		ArrayList<Trajet> meilleursTrajets = new ArrayList<Trajet>(trajetsCandidats);
 		
 		for (Contrainte c : contraintes)
 		{
-			trajets = c.evaluerTrajets(trajets);
-			if (trajets.size() == 1)
+			meilleursTrajets = c.evaluerTrajets(meilleursTrajets);
+			if (meilleursTrajets.size() == 1)
 				break;
 		}
 		
-		return trajets;
+		return meilleursTrajets;
 	}
 }

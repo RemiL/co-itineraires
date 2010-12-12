@@ -2,29 +2,26 @@ package contraintes;
 
 import java.util.ArrayList;
 
+import moyenstransport.MoyenTransport;
+
 import trajet.Trajet;
 
-public class MinimiserCoutTrajet extends ContrainteElementaire
+public class EviterMoyenTransport extends ContrainteElementaire
 {
-	public MinimiserCoutTrajet()
+	private MoyenTransport moyenTransportAEviter;
+	
+	public EviterMoyenTransport(MoyenTransport moyenTransportAEviter)
 	{
-		
+		this.moyenTransportAEviter = moyenTransportAEviter;
 	}
 	
 	public ArrayList<Trajet> evaluerTrajets(ArrayList<Trajet> trajetsCandidats) 
 	{
 		ArrayList<Trajet> meilleursTrajets = new ArrayList<Trajet>();
-		double cout = Double.MAX_VALUE;
 		
 		for (Trajet trajet : trajetsCandidats)
 		{
-			if (cout > trajet.getCout())
-			{
-				cout = trajet.getCout();
-				meilleursTrajets.clear();
-				meilleursTrajets.add(trajet);
-			}
-			else if (cout == trajet.getCout())
+			if (!trajet.utilise(moyenTransportAEviter))
 			{
 				meilleursTrajets.add(trajet);
 			}
@@ -35,6 +32,6 @@ public class MinimiserCoutTrajet extends ContrainteElementaire
 	
 	public String toString()
 	{
-		return super.toString()+" : Minimiser le coût global du trajet";
+		return super.toString()+" : Eviter le moyen de transport \""+moyenTransportAEviter+"\"";
 	}
 }

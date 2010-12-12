@@ -3,10 +3,18 @@ package simulateurdeplacement;
 import graphe.Etape;
 import graphe.Lieu;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import contraintes.Contrainte;
+import contraintes.EviterLieu;
+import contraintes.EviterMoyenTransport;
+import contraintes.MinimiserCoutTrajet;
+import contraintes.MinimiserTempsTrajet;
 
 import trajet.Trajet;
 import trajet.TrajetException;
+import usager.Usager;
 
 import ligne.Ligne;
 import moyenstransport.MarcheAPied;
@@ -21,17 +29,49 @@ public class SimulateurDeplacement
 	{
 		initialiserLieux();
 		
-		Trajet test = new Trajet();
+		ArrayList<Trajet> trajets = new ArrayList<Trajet>();
+		ArrayList<Usager> usagers = new ArrayList<Usager>();
+		ArrayList<Contrainte> contraintes = new ArrayList<Contrainte>();
 		
 		try {
-			test.ajouterEtape(new Etape(lieux.get("Batiment 337 - Salles d'examen"), lieux.get("Batiment 336"), MarcheAPied.getInstance()));
-			test.ajouterEtape(new Etape(lieux.get("Batiment 336"), lieux.get("Batiment 333"), MarcheAPied.getInstance()));
-			test.ajouterEtape(new Etape(lieux.get("Batiment 333"), lieux.get("Arrêt Bures Amphi (retour)"), MarcheAPied.getInstance()));
-			test.ajouterEtape(new Etape(lieux.get("Arrêt Bures Amphi (retour)"), lieux.get("Arrêt L'Yvette (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée")));
+			trajets.add(new Trajet());
+			trajets.get(0).ajouterEtape(new Etape(lieux.get("Batiment 337 - Salles d'examen"), lieux.get("Batiment 336"), MarcheAPied.getInstance()));
+			trajets.get(0).ajouterEtape(new Etape(lieux.get("Batiment 336"), lieux.get("Batiment 333"), MarcheAPied.getInstance()));
+			trajets.get(0).ajouterEtape(new Etape(lieux.get("Batiment 333"), lieux.get("Arrêt Bures Amphi (retour)"), MarcheAPied.getInstance()));
+			trajets.get(0).ajouterEtape(new Etape(lieux.get("Arrêt Bures Amphi (retour)"), lieux.get("Arrêt L'Yvette (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée")));
 			
-			System.out.println(test);
-			System.out.println("Coût : "+test.getCout());
-			System.out.println("Durée : "+test.getDuree());
+			System.out.println(trajets.get(0));
+			System.out.println("Coût : "+trajets.get(0).getCout());
+			System.out.println("Durée : "+trajets.get(0).getDuree()+"\n");
+			
+			trajets.add(new Trajet());
+			trajets.get(1).ajouterEtape(new Etape(lieux.get("Batiment 337 - Salles d'examen"), lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), MarcheAPied.getInstance()));
+			trajets.get(1).ajouterEtape(new Etape(lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), lieux.get("Batiment 407 - Bibliothèque Universitaire"), MarcheAPied.getInstance()));
+			trajets.get(1).ajouterEtape(new Etape(lieux.get("Batiment 407 - Bibliothèque Universitaire"), lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), MarcheAPied.getInstance()));
+			trajets.get(1).ajouterEtape(new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Batiment 470"), MarcheAPied.getInstance()));
+			trajets.get(1).ajouterEtape(new Etape(lieux.get("Batiment 470"), lieux.get("Batiment 490 - LRI"), MarcheAPied.getInstance()));
+			trajets.get(1).ajouterEtape(new Etape(lieux.get("Batiment 490 - LRI"), lieux.get("Batiment 300 - Présidence"), MarcheAPied.getInstance()));
+			trajets.get(1).ajouterEtape(new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt L'Yvette (retour)"), MarcheAPied.getInstance()));
+			
+			System.out.println(trajets.get(1));
+			System.out.println("Coût : "+trajets.get(1).getCout());
+			System.out.println("Durée : "+trajets.get(1).getDuree()+"\n");
+			
+			contraintes.add(new MinimiserCoutTrajet());
+			usagers.add(new Usager("John Doe", lieux.get("Batiment 337 - Salles d'examen"), lieux.get("Arrêt L'Yvette (retour)"), trajets, contraintes.get(0), 0));
+			contraintes.add(new MinimiserTempsTrajet());
+			usagers.add(new Usager("Jane Doe", lieux.get("Batiment 337 - Salles d'examen"), lieux.get("Arrêt L'Yvette (retour)"), trajets, contraintes.get(1), 0));
+			usagers.add(new Usager("John Smith", lieux.get("Batiment 336"), lieux.get("Arrêt L'Yvette (retour)"), trajets, contraintes.get(1), 0));
+			contraintes.add(new EviterLieu(lieux.get("Batiment 300 - Présidence")));
+			usagers.add(new Usager("Jane Smith", lieux.get("Batiment 337 - Salles d'examen"), lieux.get("Arrêt L'Yvette (retour)"), trajets, contraintes.get(2), 0));
+			contraintes.add(new EviterMoyenTransport(PrendreBus.getInstance()));
+			usagers.add(new Usager("John Martin", lieux.get("Batiment 337 - Salles d'examen"), lieux.get("Arrêt L'Yvette (retour)"), trajets, contraintes.get(3), 0));
+			
+			System.out.println(contraintes.get(0)+" :\n"+usagers.get(0).choisirMeilleurTrajet()+"\n");
+			System.out.println(contraintes.get(1)+" :\n"+usagers.get(1).choisirMeilleurTrajet()+"\n");
+			System.out.println("Pas de trajet compatible :\n"+usagers.get(2).choisirMeilleurTrajet()+"\n");
+			System.out.println(contraintes.get(2)+" :\n"+usagers.get(3).choisirMeilleurTrajet()+"\n");
+			System.out.println(contraintes.get(3)+" :\n"+usagers.get(4).choisirMeilleurTrajet()+"\n");
 		} catch (TrajetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,6 +150,8 @@ public class SimulateurDeplacement
 		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Batiment 490 - LRI"), MarcheAPied.getInstance(), 5, true);
 		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt Château (aller)"), MarcheAPied.getInstance(), 1, true);
 		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt Château (retour)"), MarcheAPied.getInstance(), 1, true);
+		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt L'Yvette (aller)"), MarcheAPied.getInstance(), 2, true);
+		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt L'Yvette (retour)"), MarcheAPied.getInstance(), 2, true);
 		new Etape(lieux.get("Batiment 333"), lieux.get("Batiment 336"), MarcheAPied.getInstance(), 1, true);
 		new Etape(lieux.get("Batiment 333"), lieux.get("Arrêt Bures Amphi (aller)"), MarcheAPied.getInstance(), 1, true);
 		new Etape(lieux.get("Batiment 333"), lieux.get("Arrêt Bures Amphi (retour)"), MarcheAPied.getInstance(), 1, true);

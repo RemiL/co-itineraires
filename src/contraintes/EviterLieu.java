@@ -1,30 +1,27 @@
 package contraintes;
 
+import graphe.Lieu;
+
 import java.util.ArrayList;
 
 import trajet.Trajet;
 
-public class MinimiserCoutTrajet extends ContrainteElementaire
+public class EviterLieu extends ContrainteElementaire
 {
-	public MinimiserCoutTrajet()
+	private Lieu lieuAEviter;
+	
+	public EviterLieu(Lieu lieuAEviter)
 	{
-		
+		this.lieuAEviter = lieuAEviter;
 	}
 	
 	public ArrayList<Trajet> evaluerTrajets(ArrayList<Trajet> trajetsCandidats) 
 	{
 		ArrayList<Trajet> meilleursTrajets = new ArrayList<Trajet>();
-		double cout = Double.MAX_VALUE;
 		
 		for (Trajet trajet : trajetsCandidats)
 		{
-			if (cout > trajet.getCout())
-			{
-				cout = trajet.getCout();
-				meilleursTrajets.clear();
-				meilleursTrajets.add(trajet);
-			}
-			else if (cout == trajet.getCout())
+			if (!trajet.passePar(lieuAEviter))
 			{
 				meilleursTrajets.add(trajet);
 			}
@@ -35,6 +32,6 @@ public class MinimiserCoutTrajet extends ContrainteElementaire
 	
 	public String toString()
 	{
-		return super.toString()+" : Minimiser le coût global du trajet";
+		return super.toString()+" : Eviter le lieu \""+lieuAEviter+"\"";
 	}
 }
