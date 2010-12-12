@@ -17,9 +17,10 @@ public class Etape
 	{
 		this.lieuDepart = lieuDepart;
 		this.lieuArrivee = lieuArrivee;
+		this.moyenTransport = moyenTransport;
+		this.ligne = ligne;
 		this.cout = cout;
 		this.duree = duree;
-		this.ligne = ligne;
 		
 		if (cout >= 0 && duree >= 0)
 			lieuDepart.ajouterEtapeVersVoisin(this);
@@ -99,5 +100,34 @@ public class Etape
 		}
 		else
 			return false;
+	}
+
+	public boolean mettreAJourCoutEtDuree(Etape etape)
+	{
+		boolean etapeCompatible = false;
+		
+		if (this.ligne == etape.ligne && this.moyenTransport == etape.moyenTransport)
+		{
+			if (this.lieuArrivee == etape.lieuArrivee)
+			{
+				etapeCompatible = true;
+				etape.cout = this.cout;
+				etape.duree = this.duree;
+			}
+			else if (etape.ligne != null)
+				etapeCompatible = ligne.mettreAJourCoutEtDuree(etape);
+		}
+		
+		return etapeCompatible;
+	}
+	
+	public String toString()
+	{
+		String str = moyenTransport.toString();
+		
+		if (ligne != null)
+			str += " ("+ligne+")";
+		
+		return str+" de \""+getLieuDepart()+"\" à \""+getLieuArrivee()+"\".";
 	}
 }

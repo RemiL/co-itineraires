@@ -46,8 +46,16 @@ public class Lieu
 		etapesVersVoisins.add(voisin);
 	}
 	
-	public boolean propose(Etape etape)
+	public boolean mettreAJourCoutEtDuree(Etape etape)
 	{
+		for (Etape e : etapesVersVoisins)
+		{
+			if (e.mettreAJourCoutEtDuree(etape))
+			{
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	

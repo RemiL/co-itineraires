@@ -47,4 +47,37 @@ public class Ligne
 	{
 		tronçons.add(tronçon);
 	}
+
+	public boolean mettreAJourCoutEtDuree(Etape etape)
+	{
+		double cout = 0;
+		int duree = 0;
+		boolean departTrouve = false;
+		
+		for (Etape e : tronçons)
+		{
+			if (!departTrouve)
+				departTrouve = (e.getLieuDepart() == etape.getLieuDepart());
+			else
+			{
+				cout += e.getCout();
+				duree += e.getDuree();
+				
+				if (e.getLieuArrivee() == etape.getLieuArrivee())
+				{
+					etape.setCout(cout);
+					etape.setDuree(duree);
+					
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public String toString()
+	{
+		return "Ligne \""+nom+"\"";
+	}
 }

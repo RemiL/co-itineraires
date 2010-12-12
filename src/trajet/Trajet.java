@@ -14,8 +14,14 @@ public class Trajet
 		etapes = new LinkedList<Etape>();
 	}
 	
-	public void ajouterEtape(Etape etape)
+	public void ajouterEtape(Etape etape) throws TrajetException
 	{
+		if (!etape.getLieuDepart().mettreAJourCoutEtDuree(etape))
+			throw new EtapeNonExistanteException(etape);
+		
+		if (etapes.size() > 0 && etapes.getLast().getLieuArrivee() != etape.getLieuDepart())
+			throw new TrajetNonCoherentException(etapes.getLast(), etape);
+		
 		etapes.add(etape);
 	}
 	
@@ -36,7 +42,7 @@ public class Trajet
 		int numEtape = 1;
 		for (Etape e : etapes)
 		{
-			str += "\n"+numEtape+". "+e.toString();
+			str += "\n"+numEtape+". "+e;
 			numEtape++;
 		}
 		
