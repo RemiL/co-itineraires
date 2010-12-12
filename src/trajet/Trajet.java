@@ -35,6 +35,26 @@ public class Trajet
 		return etapes.getLast().getLieuArrivee();
 	}
 	
+	public double getCout()
+	{
+		double cout = 0;
+		
+		for (Etape e : etapes)
+			cout += e.getCout();
+		
+		return cout;
+	}
+	
+	public int getDuree()
+	{
+		int duree = 0;
+		
+		for (Etape e : etapes)
+			duree += e.getDuree();
+		
+		return duree;
+	}
+	
 	public String toString()
 	{
 		String str = "Trajet de \""+getLieuDepart()+"\" à \""+getLieuArrivee()+"\" :";

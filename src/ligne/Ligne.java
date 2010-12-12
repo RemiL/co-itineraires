@@ -57,7 +57,14 @@ public class Ligne
 		for (Etape e : tronçons)
 		{
 			if (!departTrouve)
-				departTrouve = (e.getLieuDepart() == etape.getLieuDepart());
+			{
+				if (e.getLieuDepart() == etape.getLieuDepart())
+				{
+					departTrouve = true;
+					cout = e.getCout();
+					duree = e.getDuree();
+				}
+			}
 			else
 			{
 				cout += e.getCout();
