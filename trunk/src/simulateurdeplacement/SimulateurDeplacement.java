@@ -30,6 +30,8 @@ public class SimulateurDeplacement
 			test.ajouterEtape(new Etape(lieux.get("Arrêt Bures Amphi (retour)"), lieux.get("Arrêt L'Yvette (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée")));
 			
 			System.out.println(test);
+			System.out.println("Coût : "+test.getCout());
+			System.out.println("Durée : "+test.getDuree());
 		} catch (TrajetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -169,7 +171,7 @@ public class SimulateurDeplacement
 		new Etape(lieux.get("Arrêt L'Isles (retour)"), lieux.get("Arrêt Bures Amphi (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
 		new Etape(lieux.get("Arrêt Bures Amphi (retour)"), lieux.get("Arrêt Verger (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
 		new Etape(lieux.get("Arrêt Verger (retour)"), lieux.get("Arrêt Georges Poitou (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
-		new Etape(lieux.get("Arrêt Georges Poitou (retour)"), lieux.get("Arrêt Bibliotheque (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/8, 1);
+		new Etape(lieux.get("Arrêt Georges Poitou (retour)"), lieux.get("Arrêt Bibliotheque (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
 		new Etape(lieux.get("Arrêt Bibliotheque (retour)"), lieux.get("Arrêt Château (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
 		new Etape(lieux.get("Arrêt Château (retour)"), lieux.get("Arrêt L'Yvette (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
 		

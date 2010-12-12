@@ -43,7 +43,10 @@ public class Usager
 		for (Trajet trajet : trajetsValables)
 		{
 			if(trajet.getLieuDepart() == depart && trajet.getLieuArrivee() == arrivee)
+			{
+				this.trajet = trajet;
 				return trajet;
+			}
 		}
 		
 		return null;

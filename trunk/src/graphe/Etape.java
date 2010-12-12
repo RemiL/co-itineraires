@@ -128,6 +128,6 @@ public class Etape
 		if (ligne != null)
 			str += " ("+ligne+")";
 		
-		return str+" de \""+getLieuDepart()+"\" à \""+getLieuArrivee()+"\".";
+		return str+" de \""+getLieuDepart()+"\" jusqu'à \""+getLieuArrivee()+"\".";
 	}
 }
