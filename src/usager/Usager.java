@@ -15,6 +15,7 @@ public class Usager
 	private ArrayList<Trajet> trajetsCandidats;
 	private int tempsAttente;
 	private Lieu positionActuelle;
+	private Contrainte contrainte;
 	
 	public Usager(String nom, Lieu depart, Lieu arrivee, ArrayList<Trajet> trajetsCandidats, Contrainte contrainte, int tempsAttente)
 	{
@@ -23,6 +24,7 @@ public class Usager
 		this.arrivee = arrivee;
 		this.trajetsCandidats = trajetsCandidats;
 		this.tempsAttente = tempsAttente;
+		this.contrainte = contrainte;
 	}
 
 	public String getNom()
@@ -33,5 +35,17 @@ public class Usager
 	public Lieu getPositionActuelle()
 	{
 		return positionActuelle;
+	}
+	public Trajet choisirMeilleurTrajet(ArrayList<Trajet> trajets)
+	{
+		ArrayList<Trajet> trajetsValables = contrainte.evaluerTrajets(trajets);
+		
+		for (Trajet trajet : trajetsValables)
+		{
+			if(trajet.getLieuDepart() == depart && trajet.getLieuArrivee() == arrivee)
+				return trajet;
+		}
+		
+		return null;
 	}
 }
