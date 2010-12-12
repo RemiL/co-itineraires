@@ -1,12 +1,20 @@
 package ligne;
 
+import graphe.Etape;
+
+import java.util.ArrayList;
+
+import moyenstransport.MoyenTransport;
+
 /**
  * Une ligne abstraite représentée par un nom.
  * @author Nicolas
  */
-public abstract class Ligne
+public class Ligne
 {
 	private String nom;
+	private MoyenTransport moyenTransport;
+	private ArrayList<Etape> tronçons;
 	/*
 	private Lieu departAller;
 	private Lieu departRetour;
@@ -18,13 +26,25 @@ public abstract class Ligne
 	 * Construit une ligne avec un nom.
 	 * @param nom le nom de la ligne.
 	 */
-	public Ligne(String nom)
+	public Ligne(String nom, MoyenTransport moyenTransport)
 	{
 		this.nom = nom;
+		this.moyenTransport = moyenTransport;
+		tronçons = new ArrayList<Etape>();
 	}
 	
 	public String getNom()
 	{
 		return nom;
+	}
+	
+	public MoyenTransport getMoyenTransport()
+	{
+		return moyenTransport;
+	}
+	
+	public void ajouterTronçon(Etape tronçon)
+	{
+		tronçons.add(tronçon);
 	}
 }
