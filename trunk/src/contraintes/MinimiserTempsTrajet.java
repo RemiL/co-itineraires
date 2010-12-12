@@ -4,26 +4,37 @@ import java.util.ArrayList;
 
 import trajet.Trajet;
 
-public class MinimiserTempsTrajet extends ContrainteElementaire{
-
+public class MinimiserTempsTrajet extends ContrainteElementaire
+{
+	public MinimiserTempsTrajet()
+	{
+		
+	}
+	
 	public ArrayList<Trajet> evaluerTrajets(ArrayList<Trajet> trajetsCandidats) 
 	{
-		ArrayList<Trajet> trajets = new ArrayList<Trajet>();
-		int duree = -1;
-		for( Trajet trajet : trajetsCandidats)
+		ArrayList<Trajet> meilleursTrajets = new ArrayList<Trajet>();
+		int duree = Integer.MAX_VALUE;
+		
+		for (Trajet trajet : trajetsCandidats)
 		{
-			if (duree > trajet.getDuree() || duree == -1)
+			if (duree > trajet.getDuree())
 			{
 				duree = trajet.getDuree();
-				trajets.clear();
-				trajets.add(trajet);
+				meilleursTrajets.clear();
+				meilleursTrajets.add(trajet);
 			}
 			else if (duree == trajet.getDuree())
 			{
-				trajets.add(trajet);
+				meilleursTrajets.add(trajet);
 			}
 		}
-		return trajets;
+		
+		return meilleursTrajets;
 	}
-
+	
+	public String toString()
+	{
+		return super.toString()+" : Minimiser le temps total de trajet";
+	}
 }

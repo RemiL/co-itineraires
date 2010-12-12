@@ -121,6 +121,11 @@ public class Etape
 		return etapeCompatible;
 	}
 	
+	public boolean passePar(Lieu lieu)
+	{
+		return (lieuDepart == lieu || lieuArrivee == lieu);
+	}
+	
 	public String toString()
 	{
 		String str = moyenTransport.toString();
