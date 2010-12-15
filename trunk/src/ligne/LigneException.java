@@ -13,9 +13,8 @@ public class LigneException extends Exception
 	private static final long serialVersionUID = -6715885409432152035L;
 	
 	/**
-	 * constructeur TrajetNonCoherentException
-	 * @param derniereEtape
-	 * @param nouvelleEtape
+	 * Crée une nouvelle exception avec le message fourni.
+	 * @param msg le message de l'exception.
 	 */
 	public LigneException(String msg)
 	{
