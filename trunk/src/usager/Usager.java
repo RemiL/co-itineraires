@@ -7,6 +7,11 @@ import contraintes.Contrainte;
 import graphe.Lieu;
 import trajet.Trajet;
 
+/**
+ * Class Usager 
+ * @author Marie
+ *
+ */
 public class Usager
 {
 	private String nom;
@@ -16,7 +21,15 @@ public class Usager
 	private int tempsAttente;
 	private Lieu positionActuelle;
 	private Contrainte contrainte;
-	
+	/**
+	 * 
+	 * @param nom le nom de l'usager
+	 * @param depart le lieu de depart
+	 * @param arrivee le lieu d'arrivee
+	 * @param trajetsCandidats Arraylist des trajets candidats 
+	 * @param contrainte contrainte de type Contrainte pose une condition sur le choix du trajet 
+	 * @param tempsAttente temps d'attente que l'usager doit attendre avant de pouvoir partir
+	 */
 	public Usager(String nom, Lieu depart, Lieu arrivee, ArrayList<Trajet> trajetsCandidats, Contrainte contrainte, int tempsAttente)
 	{
 		this.nom = nom;
@@ -27,16 +40,28 @@ public class Usager
 		this.contrainte = contrainte;
 	}
 
+	/**
+	 * Methode getNom 
+	 * @return le nom de l'usager
+	 */
 	public String getNom()
 	{
 		return nom;
 	}
 
+	/**
+	 * Méthode getPositionActuelle
+	 * @return la position actuelle de l'usager
+	 */
 	public Lieu getPositionActuelle()
 	{
 		return positionActuelle;
 	}
 	
+	/**
+	 * Méthode choisirMeilleurTrajet
+	 * @return le meilleur trajet a choisir parmi les trajets candidats selon une contrainte
+	 */
 	public Trajet choisirMeilleurTrajet()
 	{
 		ArrayList<Trajet> trajetsValables = contrainte.evaluerTrajets(trajetsCandidats);
