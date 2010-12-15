@@ -32,17 +32,28 @@ public class Ligne
 		this.moyenTransport = moyenTransport;
 		tronçons = new ArrayList<Etape>();
 	}
-	
+	/**
+	 * methode getNom
+	 * @return le nom de la ligne
+	 */
 	public String getNom()
 	{
 		return nom;
 	}
 	
+	/**
+	 * methode getMoyenTransport
+	 * @return moyenTransport le moyen de transport utilisé
+	 */
 	public MoyenTransport getMoyenTransport()
 	{
 		return moyenTransport;
 	}
 	
+	/**
+	 * methode ajouterTronçon
+	 * @param tronçon le morceau de tronçon à ajouter
+	 */
 	public void ajouterTronçon(Etape tronçon)
 	{
 		tronçons.add(tronçon);
@@ -82,7 +93,9 @@ public class Ligne
 		
 		return false;
 	}
-	
+	/**
+	 * methode toString qui indique le nom de la ligne
+	 */
 	public String toString()
 	{
 		return "Ligne \""+nom+"\"";
