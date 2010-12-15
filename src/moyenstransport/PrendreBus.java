@@ -21,21 +21,26 @@ public class PrendreBus implements MoyenTransport
 	 * méthode getInstance 
 	 * @return instance une instance de PrendreBus
 	 */
-    public static PrendreBus getInstance()
-    {
-        if (instance == null) 
-        { // Premier appel
-            instance = new PrendreBus();
-        }
-        
-        return instance;
-    }
-    
-    /**
-     * méthode toString qui indique que l'on est en mode bus
-     */
-    public String toString()
-    {
-    	return "Prendre le bus";
-    }
+	public static PrendreBus getInstance()
+	{
+		if (instance == null) 
+		{ // Premier appel
+			instance = new PrendreBus();
+		}
+		
+		return instance;
+	}
+	
+	public String getNomVehicule()
+	{
+		return "bus";
+	}
+	
+	/**
+	 * méthode toString qui indique que l'on est en mode bus
+	 */
+	public String toString()
+	{
+		return "Prendre le bus";
+	}
 }

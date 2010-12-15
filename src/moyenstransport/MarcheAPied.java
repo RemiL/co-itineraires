@@ -21,21 +21,26 @@ public class MarcheAPied implements MoyenTransport
 	 * Méthode statique getInstance 
 	 * @return instance une instance de MarcheAPied
 	 */
-    public static MarcheAPied getInstance()
-    {
-        if (instance == null) 
-        { // Premier appel
-            instance = new MarcheAPied();
-        }
-        
-        return instance;
-    }
-    
-    /**
-     * Méthode toString qui indique que l'on est dans une position de marche
-     */
-    public String toString()
-    {
-    	return "Marcher";
-    }
+	public static MarcheAPied getInstance()
+	{
+		if (instance == null) 
+		{ // Premier appel
+			instance = new MarcheAPied();
+		}
+		
+		return instance;
+	}
+	
+	public String getNomVehicule()
+	{
+		return null;
+	}
+	
+	/**
+	 * Méthode toString qui indique que l'on est dans une position de marche
+	 */
+	public String toString()
+	{
+		return "Marcher";
+	}
 }

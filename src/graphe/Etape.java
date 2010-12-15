@@ -23,9 +23,11 @@ public class Etape
 		this.duree = duree;
 		
 		if (cout >= 0 && duree >= 0)
+		{
 			lieuDepart.ajouterEtapeVersVoisin(this);
-		if (ligne != null)
-			ligne.ajouterTronçon(this);
+			if (ligne != null)
+				ligne.ajouterTronçon(this);
+		}
 	}
 	
 	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport, int duree, boolean bidirectionnel)

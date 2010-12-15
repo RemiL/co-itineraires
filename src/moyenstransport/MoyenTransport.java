@@ -6,5 +6,5 @@ package moyenstransport;
  */
 public interface MoyenTransport
 {
-	
+	public String getNomVehicule();
 }
