@@ -10,7 +10,9 @@ import moyenstransport.MoyenTransport;
 public class Trajet
 {
 	private LinkedList<Etape> etapes;
-	
+	/**
+	 * constructeur Trajet
+	 */
 	public Trajet()
 	{
 		etapes = new LinkedList<Etape>();

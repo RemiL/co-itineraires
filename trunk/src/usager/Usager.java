@@ -21,8 +21,9 @@ public class Usager
 	private int tempsAttente;
 	private Lieu positionActuelle;
 	private Contrainte contrainte;
+	
 	/**
-	 * 
+	 * constructeur Usager
 	 * @param nom le nom de l'usager
 	 * @param depart le lieu de depart
 	 * @param arrivee le lieu d'arrivee
