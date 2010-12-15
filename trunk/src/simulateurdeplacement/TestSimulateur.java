@@ -99,8 +99,8 @@ public class TestSimulateur
 			
 			simulateur.lancerSimulation();
 		}
-		catch (TrajetException e) {
-			// TODO Auto-generated catch block
+		catch (TrajetException e)
+		{
 			e.printStackTrace();
 		}
 	}

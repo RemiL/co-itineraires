@@ -26,4 +26,9 @@ public class TrajetNonCoherentException extends TrajetException
 		this.derniereEtape = derniereEtape;
 		this.nouvelleEtape = nouvelleEtape;
 	}
+	
+	public String getMessage()
+	{
+		return "Trajet non cohérant, l'étape \""+nouvelleEtape+"\" ne peut pas suivre l'étape \""+derniereEtape+"\".";
+	}
 }

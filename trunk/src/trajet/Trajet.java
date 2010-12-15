@@ -137,7 +137,7 @@ public class Trajet implements Cloneable
 		int numEtape = 1;
 		for (Etape e : etapes)
 		{
-			str += "\n"+numEtape+". "+e;
+			str += "\n"+numEtape+". "+e+".";
 			numEtape++;
 		}
 		
