@@ -8,13 +8,20 @@ import java.util.LinkedList;
 
 import moyenstransport.MoyenTransport;
 
+/**
+ * Classe représentant un trajet constitué d'un enchainement logique d'étapes
+ * précisant le moyen de transport utilisé et des informations telles que le
+ * coût et la durée de l'étape.
+ */
 public class Trajet implements Cloneable
 {
+	/**	Les étapes constituant le trajet */
 	private LinkedList<Etape> etapes;
+	/**	Un itérateur sur les étapes */
 	private Iterator<Etape> iterator;
 	
 	/**
-	 * constructeur Trajet
+	 * Crée un trajet vide.
 	 */
 	public Trajet()
 	{
@@ -23,10 +30,11 @@ public class Trajet implements Cloneable
 	}
 	
 	/**
-	 * Methode ajouterEtape qui ajoute une étape au trajet
-	 * Retourne une exception si l'étape n'existe pas avec les conditions demandees
-	 * @param etape étape à ajouter
-	 * @throws TrajetException exception de non cohérence entre l'étape demandée et le lieu actuel 
+	 * Permet d'ajouter une nouvelle étape au trajet. Lève une exception si l'étape ajoutée n'est
+	 * pas cohérente dans l'enchainement des étapes ou si elle n'existe pas dans le graphe.
+	 * @param etape l'étape à ajouter.
+	 * @throws EtapeNonExistanteException si l'étape n'existe pas.
+	 * @throws TrajetNonCoherentException si l'étape produit une incohérence dans le trajet.
 	 */
 	public void ajouterEtape(Etape etape) throws TrajetException
 	{
@@ -41,8 +49,8 @@ public class Trajet implements Cloneable
 	}
 	
 	/**
-	 * Methode getLieuDepart
-	 * @return le lieu de depart du trajet
+	 * Retourne le lieu de départ du trajet.
+	 * @return le lieu de depart du trajet.
 	 */
 	public Lieu getLieuDepart()
 	{
@@ -50,8 +58,8 @@ public class Trajet implements Cloneable
 	}
 	
 	/**
-	 * Methode getLieuArrivee
-	 * @return le lieu d'arrivee du trajet
+	 * Retourne le lieu d'arrivée du trajet.
+	 * @return le lieu d'arrivée du trajet.
 	 */
 	public Lieu getLieuArrivee()
 	{
@@ -59,8 +67,8 @@ public class Trajet implements Cloneable
 	}
 	
 	/**
-	 * Méthode getCout calcule le cout global de toutes les étapes d'un trajet
-	 * @return cout
+	 * Retourne le coût global du trajet.
+	 * @return le coût global du trajet. 
 	 */
 	public double getCout()
 	{
@@ -73,8 +81,8 @@ public class Trajet implements Cloneable
 	}
 	
 	/**
-	 * Methode getDuree qui calcule la duree totale de toutes les etapes d'un trajet
-	 * @return duree
+	 * Retourne la durée globale du trajet hors tant d'attente.
+	 * @return la durée globale du trajet hors tant d'attente.
 	 */
 	public int getDuree()
 	{
@@ -87,9 +95,9 @@ public class Trajet implements Cloneable
 	}
 	
 	/**
-	 * Methode passePar qui verifie etant donne un lieu si il appartient à un trajet
-	 * @param lieu
-	 * @return vrai si le lieu appartient au trajet, faux sinon
+	 * Teste si le trajet passe par le lieu fourni.
+	 * @param lieu le lieu à tester.
+	 * @return vrai si le lieu appartient au trajet, faux sinon.
 	 */
 	public boolean passePar(Lieu lieu)
 	{
@@ -103,9 +111,10 @@ public class Trajet implements Cloneable
 	}
 	
 	/**
-	 * Methode utilise qui verifie si pour un trajet, une étape utilise le moyen de transport voulu
-	 * @param moyenTransport
-	 * @return vrai si le trajet comporte le moyen de transport, faux sinon
+	 * Teste si au moins une étape du trajet utilise le moyen 
+	 * de transport fourni.
+	 * @param moyenTransport le moyen de transport à tester.
+	 * @return vrai si une étape au moins au mois utilise le moyen de transport, faux sinon.
 	 */
 	public boolean utilise(MoyenTransport moyenTransport)
 	{
@@ -118,18 +127,29 @@ public class Trajet implements Cloneable
 		return false;
 	}
 	
+	/**
+	 * Teste si le trajet est terminé (i.e. si l'itérateur sur les
+	 * étapes a atteint la fin de la liste).
+	 * @return vrai si et seulement si le trajet est terminé.
+	 */
 	public boolean estTermine()
 	{
 		return !iterator.hasNext();
 	}
 	
+	/**
+	 * Retourne l'étape suivante du trajet.
+	 * @return l'étape suivante du trajet.
+	 */
 	public Etape getEtapeSuivante()
 	{
 		return iterator.next();
 	}
+	
 	/**
-	 * Methode toString qui affiche les caracteristiques d'un trajet
-	 * en explicitant les étapes avec leur numéro
+	 * Retournant la représentation textuelle du trajet en explicitant
+	 * ses étapes avec leur numéro.
+	 * @return une chaine de caractères représentant le trajet.
 	 */
 	public String toString()
 	{
@@ -145,6 +165,10 @@ public class Trajet implements Cloneable
 		return str;
 	}
 	
+	/**
+	 * Retourne une copie du trajet.
+	 * @return une copie du trajet.
+	 */
 	public Trajet clone()
 	{
 		Trajet t = new Trajet();

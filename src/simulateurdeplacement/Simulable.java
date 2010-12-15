@@ -9,6 +9,7 @@ public interface Simulable
 	/**
 	 * Permet de simuler le passage d'une unité de temps.
 	 * @param t le temps courant.
+	 * @throws SimulationImpossibleException si la simulation est impossible
 	 */
-	public void simulerEvolution(int t);
+	public void simulerEvolution(int t) throws SimulationImpossibleException;
 }

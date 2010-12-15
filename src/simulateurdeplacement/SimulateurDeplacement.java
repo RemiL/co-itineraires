@@ -33,8 +33,9 @@ public class SimulateurDeplacement
 	 * et fonction de la puissance de l'ordinateur sur laquelle elle est effectuée. L'unité de temps
 	 * correspond à un top d'horloge vituelle. La simulation commence toujours à t=0 et se termine
 	 * lorsque tous les utilisateurs sont arrivées.
+	 * @throws SimulationImpossibleException si la simulation est impossible.
 	 */
-	public void lancerSimulation()
+	public void lancerSimulation() throws SimulationImpossibleException
 	{
 		boolean continuer = true;
 		int t = 0;

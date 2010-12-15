@@ -109,6 +109,9 @@ public class TestSimulateur
 		} catch (LigneException e)
 		{
 			e.printStackTrace();
+		} catch (SimulationImpossibleException e)
+		{
+			e.printStackTrace();
 		}
 	}
 	
