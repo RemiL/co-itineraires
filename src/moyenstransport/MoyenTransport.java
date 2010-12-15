@@ -1,10 +1,13 @@
 package moyenstransport;
+
 /**
- * interface MoyenTransport qui represente n'importe quel moyen de transport
- * @author Marie
- *
+ * Interface MoyenTransport regroupant tous les moyens de transport.
  */
 public interface MoyenTransport
 {
+	/**
+	 * Retourne le nom du véhicule associé au moyen de transport.
+	 * @return une chaine de caractères ou null si non applicable.
+	 */
 	public String getNomVehicule();
 }
