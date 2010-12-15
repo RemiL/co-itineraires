@@ -39,6 +39,7 @@ public class Trajet implements Cloneable
 		etapes.add(etape);
 		iterator = etapes.listIterator();
 	}
+	
 	/**
 	 * Methode getLieuDepart
 	 * @return le lieu de depart du trajet
