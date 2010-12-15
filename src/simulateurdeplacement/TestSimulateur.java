@@ -26,6 +26,9 @@ import ligne.LigneException;
 import moyenstransport.MarcheAPied;
 import moyenstransport.PrendreBus;
 
+/**
+ * Classe de test permettant de tester le fonctionnement du simulateur.
+ */
 public class TestSimulateur 
 {
 	static private HashMap<String, Lieu> lieux = new HashMap<String, Lieu>();
