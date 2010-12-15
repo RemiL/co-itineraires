@@ -22,4 +22,9 @@ public class EtapeNonExistanteException extends TrajetException
 		super();
 		this.etape = etape;
 	}
+
+	public String getMessage()
+	{
+		return "L'étape \""+etape+"\" n'existe pas.";
+	}
 }
