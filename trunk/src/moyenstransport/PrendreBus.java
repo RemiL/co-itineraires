@@ -1,16 +1,15 @@
 package moyenstransport;
+
 /**
- * Class PrendreBus qui implémente MoyenTransport
- * représente le moyen de transport du bus
- * @author Marie
- *
+ * Classe implémentant l'interface MoyenTransport et représentant le moyen 
+ * de transport "prendre le bus". Cette classe est un singleton.
  */
 public class PrendreBus implements MoyenTransport
 {
 	private static PrendreBus instance;
 	
 	/**
-	 * constructeur prive PrendreBus
+	 * Constructeur privé, voir getInstance().
 	 */
 	private PrendreBus()
 	{
@@ -18,8 +17,8 @@ public class PrendreBus implements MoyenTransport
 	}
 	
 	/**
-	 * méthode getInstance 
-	 * @return instance une instance de PrendreBus
+	 * Méthode statique retournant l'unique instance de la classe. 
+	 * @return l'instance unique de PrendreBus.
 	 */
 	public static PrendreBus getInstance()
 	{
@@ -31,13 +30,19 @@ public class PrendreBus implements MoyenTransport
 		return instance;
 	}
 	
+	/**
+	 * Retourne le nom du véhicule associé au moyen de transport.
+	 * @return la chaine "bus".
+	 */
 	public String getNomVehicule()
 	{
 		return "bus";
 	}
 	
 	/**
-	 * méthode toString qui indique que l'on est en mode bus
+	 * Retourne une représentation textuelle du moyen de transport
+	 * sous la forme d'un verbe d'action.
+	 * @return la chaine "Prendre le bus".
 	 */
 	public String toString()
 	{
