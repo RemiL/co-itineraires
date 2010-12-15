@@ -22,6 +22,7 @@ import trajet.TrajetException;
 import usager.Usager;
 
 import ligne.Ligne;
+import ligne.LigneException;
 import moyenstransport.MarcheAPied;
 import moyenstransport.PrendreBus;
 
@@ -102,6 +103,9 @@ public class TestSimulateur
 		catch (TrajetException e)
 		{
 			e.printStackTrace();
+		} catch (LigneException e)
+		{
+			e.printStackTrace();
 		}
 	}
 	
@@ -167,108 +171,115 @@ public class TestSimulateur
 		lieux.put("Arrêt Corbeville (aller)", new Lieu("Arrêt Corbeville (aller)"));
 		lieux.put("Arrêt Corbeville (retour)", new Lieu("Arrêt Corbeville (retour)"));
 		
-		// Voisins à pied
-		new Etape(lieux.get("Batiment 102 - Institut de physique nucléaire d'Orsay"), lieux.get("Arrêt L'Yvette (aller)"), MarcheAPied.getInstance(), 8, true);
-		new Etape(lieux.get("Batiment 102 - Institut de physique nucléaire d'Orsay"), lieux.get("Arrêt L'Yvette (retour)"), MarcheAPied.getInstance(), 8, true);
-		new Etape(lieux.get("Batiment 230 - Restaurant Universitaire de Bures"), lieux.get("Batiment 333"), MarcheAPied.getInstance(), 5, true);
-		new Etape(lieux.get("Batiment 230 - Restaurant Universitaire de Bures"), lieux.get("Arrêt Jean Monnet (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 230 - Restaurant Universitaire de Bures"), lieux.get("Arrêt Jean Monnet (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), MarcheAPied.getInstance(), 4, true);
-		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Batiment 490 - LRI"), MarcheAPied.getInstance(), 5, true);
-		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt Château (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt Château (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt L'Yvette (aller)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt L'Yvette (retour)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("Batiment 333"), lieux.get("Batiment 336"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 333"), lieux.get("Arrêt Bures Amphi (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 333"), lieux.get("Arrêt Bures Amphi (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 336"), lieux.get("Batiment 337 - Salles d'examen"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 337 - Salles d'examen"), lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), MarcheAPied.getInstance(), 5, true);
-		new Etape(lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), lieux.get("Batiment 407 - Bibliothèque Universitaire"), MarcheAPied.getInstance(), 7, true);
-		new Etape(lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), lieux.get("Batiment 410 - Institut de Chimie Moléculaire et des Matériaux d'Orsay"), MarcheAPied.getInstance(), 5, true);
-		new Etape(lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), lieux.get("Arrêt Verger (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), lieux.get("Arrêt Verger (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Batiment 407 - Bibliothèque Universitaire"), MarcheAPied.getInstance(), 3, true);
-		new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), MarcheAPied.getInstance(), 3, true);
-		new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Batiment 470"), MarcheAPied.getInstance(), 5, true);
-		new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Batiment 508 - LIMSI"), MarcheAPied.getInstance(), 15, true);
-		new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Arrêt Launay (aller)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Arrêt Launay (retour)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("Batiment 407 - Bibliothèque Universitaire"), lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("Batiment 407 - Bibliothèque Universitaire"), lieux.get("Arrêt Bibliotheque (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 407 - Bibliothèque Universitaire"), lieux.get("Arrêt Bibliotheque (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 410 - Institut de Chimie Moléculaire et des Matériaux d'Orsay"), lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("Batiment 410 - Institut de Chimie Moléculaire et des Matériaux d'Orsay"), lieux.get("Arrêt Georges Poitou (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 410 - Institut de Chimie Moléculaire et des Matériaux d'Orsay"), lieux.get("Arrêt Georges Poitou (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), lieux.get("Arrêt Bibliotheque (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), lieux.get("Arrêt Bibliotheque (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 470"), lieux.get("Batiment 490 - LRI"), MarcheAPied.getInstance(), 3, true);
-		new Etape(lieux.get("Batiment 470"), lieux.get("Arrêt Launay (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 470"), lieux.get("Arrêt Launay (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 490 - LRI"), lieux.get("Arrêt Launay (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 490 - LRI"), lieux.get("Arrêt Launay (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 505 - Laboratoire Aimé Cotton"), lieux.get("Batiment 508 - LIMSI"), MarcheAPied.getInstance(), 4, true);
-		new Etape(lieux.get("Batiment 505 - Laboratoire Aimé Cotton"), lieux.get("Batiment 620 - Maison de l'Ingénieur"), MarcheAPied.getInstance(), 5, true);
-		new Etape(lieux.get("Batiment 505 - Laboratoire Aimé Cotton"), lieux.get("Arrêt Belvédère (aller)"), MarcheAPied.getInstance(), 4, true);
-		new Etape(lieux.get("Batiment 505 - Laboratoire Aimé Cotton"), lieux.get("Arrêt Belvédère (retour)"), MarcheAPied.getInstance(), 4, true);
-		new Etape(lieux.get("Batiment 508 - LIMSI"), lieux.get("Batiment 620 - Maison de l'Ingénieur"), MarcheAPied.getInstance(), 5, true);
-		new Etape(lieux.get("Batiment 508 - LIMSI"), lieux.get("Arrêt De Broglie (aller)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 508 - LIMSI"), lieux.get("Arrêt De Broglie (retour)"), MarcheAPied.getInstance(), 1, true);
-		new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("Batiment 640 - PUIO"), MarcheAPied.getInstance(), 3, true);
-		new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("IUT d'Orsay"), MarcheAPied.getInstance(), 3, true);
-		new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("SUPELEC"), MarcheAPied.getInstance(), 9, true);
-		new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("Arrêt IUT Maison de l'ingénieur (aller)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("Batiment 640 - PUIO"), lieux.get("IUT d'Orsay"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("IUT d'Orsay"), lieux.get("Arrêt IUT Maison de l'ingénieur (aller)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("IUT d'Orsay"), lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("IUT d'Orsay"), lieux.get("Arrêt Corbeville (aller)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("IUT d'Orsay"), lieux.get("Arrêt Corbeville (retour)"), MarcheAPied.getInstance(), 2, true);
-		new Etape(lieux.get("SUPELEC"), lieux.get("Arrêt Moulon (aller)"), MarcheAPied.getInstance(), 3, true);
-		new Etape(lieux.get("SUPELEC"), lieux.get("Arrêt Moulon (retour)"), MarcheAPied.getInstance(), 3, true);
-		
-		int[] horairesTests = {0,15,30,45,60,75,90,105,120,135,150,165,180,195};
-		
-		// Ligne de bus 06-07 Vallée
-		lignesBus.put("06-07 Vallée", new Ligne("06-07 Vallée", PrendreBus.getInstance(), horairesTests));
-		new Etape(lieux.get("Arrêt L'Yvette (aller)"), lieux.get("Arrêt Château (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
-		new Etape(lieux.get("Arrêt Château (aller)"), lieux.get("Arrêt Bibliotheque (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
-		new Etape(lieux.get("Arrêt Bibliotheque (aller)"), lieux.get("Arrêt Georges Poitou (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
-		new Etape(lieux.get("Arrêt Georges Poitou (aller)"), lieux.get("Arrêt Verger (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
-		new Etape(lieux.get("Arrêt Verger (aller)"), lieux.get("Arrêt Bures Amphi (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
-		new Etape(lieux.get("Arrêt Bures Amphi (aller)"), lieux.get("Arrêt L'Isles (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
-		new Etape(lieux.get("Arrêt L'Isles (aller)"), lieux.get("Arrêt Jean Monnet (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
-		new Etape(lieux.get("Arrêt Jean Monnet (aller)"), lieux.get("Arrêt Jean Monnet (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 0, 10);
-		new Etape(lieux.get("Arrêt Jean Monnet (retour)"), lieux.get("Arrêt L'Isles (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
-		new Etape(lieux.get("Arrêt L'Isles (retour)"), lieux.get("Arrêt Bures Amphi (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
-		new Etape(lieux.get("Arrêt Bures Amphi (retour)"), lieux.get("Arrêt Verger (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
-		new Etape(lieux.get("Arrêt Verger (retour)"), lieux.get("Arrêt Georges Poitou (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
-		new Etape(lieux.get("Arrêt Georges Poitou (retour)"), lieux.get("Arrêt Bibliotheque (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
-		new Etape(lieux.get("Arrêt Bibliotheque (retour)"), lieux.get("Arrêt Château (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
-		new Etape(lieux.get("Arrêt Château (retour)"), lieux.get("Arrêt L'Yvette (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
-		
-		// Ligne de bus 06-07 Plateau
-		lignesBus.put("06-07 Plateau", new Ligne("06-07 Plateau", PrendreBus.getInstance(), horairesTests));
-		new Etape(lieux.get("Arrêt L'Yvette (aller)"), lieux.get("Arrêt Château (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt Château (aller)"), lieux.get("Arrêt Launay (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt Launay (aller)"), lieux.get("Arrêt Bois des Rames (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 4);
-		new Etape(lieux.get("Arrêt Bois des Rames (aller)"), lieux.get("Arrêt Belvédère (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt Belvédère (aller)"), lieux.get("Arrêt De Broglie (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt De Broglie (aller)"), lieux.get("Arrêt IUT Maison de l'ingénieur (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 2);
-		new Etape(lieux.get("Arrêt IUT Maison de l'ingénieur (aller)"), lieux.get("Arrêt Moulon (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt Moulon (aller)"), lieux.get("Arrêt IBP (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt IBP (aller)"), lieux.get("Arrêt IUT Pôle d'ingenerie (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt IUT Pôle d'ingenerie (aller)"), lieux.get("Arrêt Corbeville (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt Corbeville (aller)"), lieux.get("Arrêt Corbeville (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 0, 10);
-		new Etape(lieux.get("Arrêt Corbeville (retour)"), lieux.get("Arrêt IUT Pôle d'ingenerie (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt IUT Pôle d'ingenerie (retour)"), lieux.get("Arrêt IBP (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt IBP (retour)"), lieux.get("Arrêt Moulon (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt Moulon (retour)"), lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), lieux.get("Arrêt Arrêt De Broglie (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 2);
-		new Etape(lieux.get("Arrêt De Broglie (retour)"), lieux.get("Arrêt Belvédère (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt Belvédère (retour)"), lieux.get("Arrêt Bois des Rames (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt Bois des Rames (retour)"), lieux.get("Arrêt Launay (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 4);
-		new Etape(lieux.get("Arrêt Launay (retour)"), lieux.get("Arrêt Château (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-		new Etape(lieux.get("Arrêt Château (retour)"), lieux.get("Arrêt L'Yvette (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+		try
+		{
+			// Voisins à pied
+			new Etape(lieux.get("Batiment 102 - Institut de physique nucléaire d'Orsay"), lieux.get("Arrêt L'Yvette (aller)"), MarcheAPied.getInstance(), 8, true);
+			new Etape(lieux.get("Batiment 102 - Institut de physique nucléaire d'Orsay"), lieux.get("Arrêt L'Yvette (retour)"), MarcheAPied.getInstance(), 8, true);
+			new Etape(lieux.get("Batiment 230 - Restaurant Universitaire de Bures"), lieux.get("Batiment 333"), MarcheAPied.getInstance(), 5, true);
+			new Etape(lieux.get("Batiment 230 - Restaurant Universitaire de Bures"), lieux.get("Arrêt Jean Monnet (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 230 - Restaurant Universitaire de Bures"), lieux.get("Arrêt Jean Monnet (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), MarcheAPied.getInstance(), 4, true);
+			new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Batiment 490 - LRI"), MarcheAPied.getInstance(), 5, true);
+			new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt Château (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt Château (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt L'Yvette (aller)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("Batiment 300 - Présidence"), lieux.get("Arrêt L'Yvette (retour)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("Batiment 333"), lieux.get("Batiment 336"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 333"), lieux.get("Arrêt Bures Amphi (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 333"), lieux.get("Arrêt Bures Amphi (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 336"), lieux.get("Batiment 337 - Salles d'examen"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 337 - Salles d'examen"), lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), MarcheAPied.getInstance(), 5, true);
+			new Etape(lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), lieux.get("Batiment 407 - Bibliothèque Universitaire"), MarcheAPied.getInstance(), 7, true);
+			new Etape(lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), lieux.get("Batiment 410 - Institut de Chimie Moléculaire et des Matériaux d'Orsay"), MarcheAPied.getInstance(), 5, true);
+			new Etape(lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), lieux.get("Arrêt Verger (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 362 - Laboratoire Ecologie, Systématique et Evolution"), lieux.get("Arrêt Verger (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Batiment 407 - Bibliothèque Universitaire"), MarcheAPied.getInstance(), 3, true);
+			new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), MarcheAPied.getInstance(), 3, true);
+			new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Batiment 470"), MarcheAPied.getInstance(), 5, true);
+			new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Batiment 508 - LIMSI"), MarcheAPied.getInstance(), 15, true);
+			new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Arrêt Launay (aller)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("Batiment 406 - Restaurant Universitaire d'Orsay"), lieux.get("Arrêt Launay (retour)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("Batiment 407 - Bibliothèque Universitaire"), lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("Batiment 407 - Bibliothèque Universitaire"), lieux.get("Arrêt Bibliotheque (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 407 - Bibliothèque Universitaire"), lieux.get("Arrêt Bibliotheque (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 410 - Institut de Chimie Moléculaire et des Matériaux d'Orsay"), lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("Batiment 410 - Institut de Chimie Moléculaire et des Matériaux d'Orsay"), lieux.get("Arrêt Georges Poitou (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 410 - Institut de Chimie Moléculaire et des Matériaux d'Orsay"), lieux.get("Arrêt Georges Poitou (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), lieux.get("Arrêt Bibliotheque (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 425 - Laboratoire de Mathématiques d'Orsay"), lieux.get("Arrêt Bibliotheque (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 470"), lieux.get("Batiment 490 - LRI"), MarcheAPied.getInstance(), 3, true);
+			new Etape(lieux.get("Batiment 470"), lieux.get("Arrêt Launay (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 470"), lieux.get("Arrêt Launay (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 490 - LRI"), lieux.get("Arrêt Launay (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 490 - LRI"), lieux.get("Arrêt Launay (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 505 - Laboratoire Aimé Cotton"), lieux.get("Batiment 508 - LIMSI"), MarcheAPied.getInstance(), 4, true);
+			new Etape(lieux.get("Batiment 505 - Laboratoire Aimé Cotton"), lieux.get("Batiment 620 - Maison de l'Ingénieur"), MarcheAPied.getInstance(), 5, true);
+			new Etape(lieux.get("Batiment 505 - Laboratoire Aimé Cotton"), lieux.get("Arrêt Belvédère (aller)"), MarcheAPied.getInstance(), 4, true);
+			new Etape(lieux.get("Batiment 505 - Laboratoire Aimé Cotton"), lieux.get("Arrêt Belvédère (retour)"), MarcheAPied.getInstance(), 4, true);
+			new Etape(lieux.get("Batiment 508 - LIMSI"), lieux.get("Batiment 620 - Maison de l'Ingénieur"), MarcheAPied.getInstance(), 5, true);
+			new Etape(lieux.get("Batiment 508 - LIMSI"), lieux.get("Arrêt De Broglie (aller)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 508 - LIMSI"), lieux.get("Arrêt De Broglie (retour)"), MarcheAPied.getInstance(), 1, true);
+			new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("Batiment 640 - PUIO"), MarcheAPied.getInstance(), 3, true);
+			new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("IUT d'Orsay"), MarcheAPied.getInstance(), 3, true);
+			new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("SUPELEC"), MarcheAPied.getInstance(), 9, true);
+			new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("Arrêt IUT Maison de l'ingénieur (aller)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("Batiment 620 - Maison de l'Ingénieur"), lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("Batiment 640 - PUIO"), lieux.get("IUT d'Orsay"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("IUT d'Orsay"), lieux.get("Arrêt IUT Maison de l'ingénieur (aller)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("IUT d'Orsay"), lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("IUT d'Orsay"), lieux.get("Arrêt Corbeville (aller)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("IUT d'Orsay"), lieux.get("Arrêt Corbeville (retour)"), MarcheAPied.getInstance(), 2, true);
+			new Etape(lieux.get("SUPELEC"), lieux.get("Arrêt Moulon (aller)"), MarcheAPied.getInstance(), 3, true);
+			new Etape(lieux.get("SUPELEC"), lieux.get("Arrêt Moulon (retour)"), MarcheAPied.getInstance(), 3, true);
+			
+			int[] horairesTests = {0,15,30,45,60,75,90,105,120,135,150,165,180,195};
+			
+			// Ligne de bus 06-07 Vallée
+			lignesBus.put("06-07 Vallée", new Ligne("06-07 Vallée", PrendreBus.getInstance(), horairesTests));
+			new Etape(lieux.get("Arrêt L'Yvette (aller)"), lieux.get("Arrêt Château (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
+			new Etape(lieux.get("Arrêt Château (aller)"), lieux.get("Arrêt Bibliotheque (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
+			new Etape(lieux.get("Arrêt Bibliotheque (aller)"), lieux.get("Arrêt Georges Poitou (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
+			new Etape(lieux.get("Arrêt Georges Poitou (aller)"), lieux.get("Arrêt Verger (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
+			new Etape(lieux.get("Arrêt Verger (aller)"), lieux.get("Arrêt Bures Amphi (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
+			new Etape(lieux.get("Arrêt Bures Amphi (aller)"), lieux.get("Arrêt L'Isles (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
+			new Etape(lieux.get("Arrêt L'Isles (aller)"), lieux.get("Arrêt Jean Monnet (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
+			new Etape(lieux.get("Arrêt Jean Monnet (aller)"), lieux.get("Arrêt Jean Monnet (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 0, 10);
+			new Etape(lieux.get("Arrêt Jean Monnet (retour)"), lieux.get("Arrêt L'Isles (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
+			new Etape(lieux.get("Arrêt L'Isles (retour)"), lieux.get("Arrêt Bures Amphi (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
+			new Etape(lieux.get("Arrêt Bures Amphi (retour)"), lieux.get("Arrêt Verger (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
+			new Etape(lieux.get("Arrêt Verger (retour)"), lieux.get("Arrêt Georges Poitou (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
+			new Etape(lieux.get("Arrêt Georges Poitou (retour)"), lieux.get("Arrêt Bibliotheque (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
+			new Etape(lieux.get("Arrêt Bibliotheque (retour)"), lieux.get("Arrêt Château (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 2);
+			new Etape(lieux.get("Arrêt Château (retour)"), lieux.get("Arrêt L'Yvette (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Vallée"), 1.8/7, 1);
+			
+			// Ligne de bus 06-07 Plateau
+			lignesBus.put("06-07 Plateau", new Ligne("06-07 Plateau", PrendreBus.getInstance(), horairesTests));
+			new Etape(lieux.get("Arrêt L'Yvette (aller)"), lieux.get("Arrêt Château (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt Château (aller)"), lieux.get("Arrêt Launay (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt Launay (aller)"), lieux.get("Arrêt Bois des Rames (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 4);
+			new Etape(lieux.get("Arrêt Bois des Rames (aller)"), lieux.get("Arrêt Belvédère (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt Belvédère (aller)"), lieux.get("Arrêt De Broglie (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt De Broglie (aller)"), lieux.get("Arrêt IUT Maison de l'ingénieur (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 2);
+			new Etape(lieux.get("Arrêt IUT Maison de l'ingénieur (aller)"), lieux.get("Arrêt Moulon (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt Moulon (aller)"), lieux.get("Arrêt IBP (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt IBP (aller)"), lieux.get("Arrêt IUT Pôle d'ingenerie (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt IUT Pôle d'ingenerie (aller)"), lieux.get("Arrêt Corbeville (aller)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt Corbeville (aller)"), lieux.get("Arrêt Corbeville (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 0, 10);
+			new Etape(lieux.get("Arrêt Corbeville (retour)"), lieux.get("Arrêt IUT Pôle d'ingenerie (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt IUT Pôle d'ingenerie (retour)"), lieux.get("Arrêt IBP (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt IBP (retour)"), lieux.get("Arrêt Moulon (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt Moulon (retour)"), lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), lieux.get("Arrêt Arrêt De Broglie (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 2);
+			new Etape(lieux.get("Arrêt De Broglie (retour)"), lieux.get("Arrêt Belvédère (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt Belvédère (retour)"), lieux.get("Arrêt Bois des Rames (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt Bois des Rames (retour)"), lieux.get("Arrêt Launay (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 4);
+			new Etape(lieux.get("Arrêt Launay (retour)"), lieux.get("Arrêt Château (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+			new Etape(lieux.get("Arrêt Château (retour)"), lieux.get("Arrêt L'Yvette (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
+		}
+		catch (LigneException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

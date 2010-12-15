@@ -1,6 +1,7 @@
 package graphe;
 
 import ligne.Ligne;
+import ligne.LigneException;
 import moyenstransport.MoyenTransport;
 
 
@@ -13,7 +14,7 @@ public class Etape
 	private double cout;
 	private int duree;
 	
-	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport, Ligne ligne, double cout, int duree)
+	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport, Ligne ligne, double cout, int duree) throws LigneException
 	{
 		this.lieuDepart = lieuDepart;
 		this.lieuArrivee = lieuArrivee;
@@ -30,24 +31,24 @@ public class Etape
 		}
 	}
 	
-	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport, int duree, boolean bidirectionnel)
+	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport, int duree, boolean bidirectionnel) throws LigneException
 	{
 		this(lieuDepart, lieuArrivee, moyenTransport, null, 0, duree);
 		if (bidirectionnel)
 			new Etape(lieuArrivee, lieuDepart, moyenTransport, duree);
 	}
 	
-	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport, int duree)
+	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport, int duree) throws LigneException
 	{
 		this(lieuDepart, lieuArrivee, moyenTransport, null, 0, duree);
 	}
 	
-	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport, Ligne ligne)
+	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport, Ligne ligne) throws LigneException
 	{
 		this(lieuDepart, lieuArrivee, moyenTransport, ligne, -1, -1);
 	}
 	
-	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport)
+	public Etape(Lieu lieuDepart, Lieu lieuArrivee, MoyenTransport moyenTransport) throws LigneException
 	{
 		this(lieuDepart, lieuArrivee, moyenTransport, null, -1, -1);
 	}
