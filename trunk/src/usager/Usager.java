@@ -1,10 +1,13 @@
 package usager;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import contraintes.Contrainte;
 
+import graphe.Etape;
 import graphe.Lieu;
+import simulateurdeplacement.Simulable;
 import trajet.Trajet;
 
 /**
@@ -12,14 +15,15 @@ import trajet.Trajet;
  * @author Marie
  *
  */
-public class Usager
+public class Usager extends Observable implements Simulable
 {
 	private String nom;
 	private Trajet trajet;
-	private Lieu depart, arrivee;
+	private Lieu depart, arrivee, prochainDepart;
 	private ArrayList<Trajet> trajetsCandidats;
-	private int tempsAttente;
-	private Lieu positionActuelle;
+	private int attenteAvantEvenement, tempsAttenduTransport;
+	private Etape etapeActuelle;
+	private boolean estArrive, attenteTransport;
 	private Contrainte contrainte;
 	
 	/**
@@ -34,13 +38,17 @@ public class Usager
 	public Usager(String nom, Lieu depart, Lieu arrivee, ArrayList<Trajet> trajetsCandidats, Contrainte contrainte, int tempsAttente)
 	{
 		this.nom = nom;
-		this.positionActuelle = this.depart = depart;
+		this.prochainDepart = this.depart = depart;
 		this.arrivee = arrivee;
 		this.trajetsCandidats = trajetsCandidats;
-		this.tempsAttente = tempsAttente;
+		this.etapeActuelle = null;
+		this.estArrive = false;
 		this.contrainte = contrainte;
+		this.attenteAvantEvenement = tempsAttente;
+		this.attenteTransport = false;
+		this.tempsAttenduTransport = 0;
 	}
-
+	
 	/**
 	 * Methode getNom 
 	 * @return le nom de l'usager
@@ -49,16 +57,36 @@ public class Usager
 	{
 		return nom;
 	}
-
+	
+	public Lieu getLieuDepart()
+	{
+		return depart;
+	}
+	
+	public Lieu getLieuArrivee()
+	{
+		return arrivee;
+	}
+	
 	/**
 	 * Méthode getPositionActuelle
 	 * @return la position actuelle de l'usager
 	 */
-	public Lieu getPositionActuelle()
+	public Etape getEtapeActuelle()
 	{
-		return positionActuelle;
+		return etapeActuelle;
+	}
+    
+	public boolean estArrive()
+	{
+		return estArrive;
 	}
 	
+	public int getTempsAttenduTransport()
+	{
+		return tempsAttenduTransport;
+	}
+    
 	/**
 	 * Méthode choisirMeilleurTrajet
 	 * @return le meilleur trajet a choisir parmi les trajets candidats selon une contrainte
@@ -71,11 +99,56 @@ public class Usager
 		{
 			if(trajet.getLieuDepart() == depart && trajet.getLieuArrivee() == arrivee)
 			{
-				this.trajet = trajet;
+				this.trajet = trajet.clone();
 				return trajet;
 			}
 		}
 		
 		return null;
+	}
+	
+	public void simulerEvolution(int t)
+	{
+		if (!estArrive)
+		{
+			if (attenteTransport)
+			{
+				tempsAttenduTransport++;
+				
+				if (etapeActuelle.getLigne().estPresentVehicule(prochainDepart))
+				{
+					attenteTransport = false;
+					setChanged();
+					notifyObservers(t);
+				}
+			}
+			else if (attenteAvantEvenement == 0)
+			{
+				if (!trajet.estTermine())
+				{
+					etapeActuelle = trajet.getEtapeSuivante();
+					attenteAvantEvenement = etapeActuelle.getDuree();
+					prochainDepart = etapeActuelle.getLieuDepart();
+					
+					attenteTransport = etapeActuelle.getLigne() != null && !etapeActuelle.getLigne().estPresentVehicule(prochainDepart);
+				}
+				else
+					estArrive = true;
+				
+				if (!attenteTransport)
+				{
+					setChanged();
+					notifyObservers(t);
+				}
+			}
+			
+			if (!attenteTransport)
+				attenteAvantEvenement--;
+		}
+	}
+	
+	public String toString()
+	{
+		return nom;
 	}
 }

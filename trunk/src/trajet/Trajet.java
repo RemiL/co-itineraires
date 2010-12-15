@@ -3,19 +3,23 @@ package trajet;
 import graphe.Etape;
 import graphe.Lieu;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import moyenstransport.MoyenTransport;
 
-public class Trajet
+public class Trajet implements Cloneable
 {
 	private LinkedList<Etape> etapes;
+	private Iterator<Etape> iterator;
+	
 	/**
 	 * constructeur Trajet
 	 */
 	public Trajet()
 	{
 		etapes = new LinkedList<Etape>();
+		iterator = etapes.listIterator();
 	}
 	
 	/**
@@ -33,6 +37,7 @@ public class Trajet
 			throw new TrajetNonCoherentException(etapes.getLast(), etape);
 		
 		etapes.add(etape);
+		iterator = etapes.listIterator();
 	}
 	/**
 	 * Methode getLieuDepart
@@ -112,6 +117,15 @@ public class Trajet
 		return false;
 	}
 	
+	public boolean estTermine()
+	{
+		return !iterator.hasNext();
+	}
+	
+	public Etape getEtapeSuivante()
+	{
+		return iterator.next();
+	}
 	/**
 	 * Methode toString qui affiche les caracteristiques d'un trajet
 	 * en explicitant les étapes avec leur numéro
@@ -128,5 +142,14 @@ public class Trajet
 		}
 		
 		return str;
+	}
+	
+	public Trajet clone()
+	{
+		Trajet t = new Trajet();
+		t.etapes = (LinkedList<Etape>) this.etapes.clone();
+		t.iterator = t.etapes.listIterator();
+		
+		return t;
 	}
 }
