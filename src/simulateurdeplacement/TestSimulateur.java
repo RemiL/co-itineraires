@@ -106,12 +106,17 @@ public class TestSimulateur
 		catch (TrajetException e)
 		{
 			e.printStackTrace();
-		} catch (LigneException e)
+			System.exit(1);
+		} 
+		catch (LigneException e)
 		{
 			e.printStackTrace();
-		} catch (SimulationImpossibleException e)
+			System.exit(1);
+		} 
+		catch (SimulationImpossibleException e)
 		{
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 	
@@ -276,7 +281,7 @@ public class TestSimulateur
 			new Etape(lieux.get("Arrêt IUT Pôle d'ingenerie (retour)"), lieux.get("Arrêt IBP (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
 			new Etape(lieux.get("Arrêt IBP (retour)"), lieux.get("Arrêt Moulon (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
 			new Etape(lieux.get("Arrêt Moulon (retour)"), lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
-			new Etape(lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), lieux.get("Arrêt Arrêt De Broglie (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 2);
+			new Etape(lieux.get("Arrêt IUT Maison de l'ingénieur (retour)"), lieux.get("Arrêt De Broglie (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 2);
 			new Etape(lieux.get("Arrêt De Broglie (retour)"), lieux.get("Arrêt Belvédère (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
 			new Etape(lieux.get("Arrêt Belvédère (retour)"), lieux.get("Arrêt Bois des Rames (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 1);
 			new Etape(lieux.get("Arrêt Bois des Rames (retour)"), lieux.get("Arrêt Launay (retour)"), PrendreBus.getInstance(), lignesBus.get("06-07 Plateau"), 1.8/10, 4);
@@ -286,6 +291,7 @@ public class TestSimulateur
 		catch (LigneException e)
 		{
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 }
